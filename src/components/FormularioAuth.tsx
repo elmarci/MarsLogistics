@@ -25,8 +25,8 @@ export function FormularioAuth({
           <input id={c.name} name={c.name} type={c.type} autoComplete={c.autoComplete} required className="campo" />
         </div>
       ))}
-      {estado.error && <p className="text-sm text-red-600">{estado.error}</p>}
-      {estado.ok && <p className="text-sm text-green-700">{estado.ok}</p>}
+      {estado.error && <p className="text-sm text-alerta">{estado.error}</p>}
+      {estado.ok && <p className="text-sm text-marca">{estado.ok}</p>}
       <button type="submit" disabled={pendiente} className="boton w-full">
         {pendiente ? "Procesando…" : textoBoton}
       </button>

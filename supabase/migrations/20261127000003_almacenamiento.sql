@@ -1,10 +1,15 @@
 -- MarsLogistics · Bucket privado para documentos (BL, DAM, facturas, GRE, actas...).
+-- Ruta de cada archivo: <expediente_id>/<referencia_id o "general">/<marca de tiempo>-<nombre>.
 -- Solo el personal con permiso de escritura sube y borra archivos. Las descargas
 -- se hacen con URLs firmadas que genera el servidor tras comprobar, con RLS,
 -- que el usuario puede ver la fila de `documento`.
 insert into storage.buckets (id, name, public)
 values ('documentos', 'documentos', false)
 on conflict (id) do nothing;
+
+drop policy if exists documentos_lectura_interna on storage.objects;
+drop policy if exists documentos_subida on storage.objects;
+drop policy if exists documentos_borrado on storage.objects;
 
 create policy documentos_lectura_interna on storage.objects for select
   using (bucket_id = 'documentos' and public.es_interno());
