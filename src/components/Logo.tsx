@@ -11,7 +11,7 @@ export function Logo({ grande = false }: { grande?: boolean }) {
         <span className="absolute -top-0.5 -right-0.5 h-1.5 w-1.5 rounded-full bg-marca shadow-[0_0_8px_#22d3ee]" />
       </span>
       <span className={`codigo leading-none font-semibold tracking-tight ${grande ? "text-xl" : "text-sm"}`}>
-        MARS<span className="text-marca">//</span>LOGISTICS
+        MARS<span className="text-marca">{"//"}</span>LOGISTICS
       </span>
     </span>
   );

@@ -42,7 +42,7 @@ export default async function UsuariosPage() {
           <details key={p.id} className="tarjeta">
             <summary className="cursor-pointer text-sm">
               <span className="font-medium">{p.nombre}</span> · {p.email} · {ETIQUETA_ROL[p.rol]}
-              {!p.activo && <span className="ml-2 text-red-600">(inactivo)</span>}
+              {!p.activo && <span className="ml-2 text-aviso">(inactivo)</span>}
             </summary>
             <div className="mt-4">
               <Formulario accion={actualizarPerfil.bind(null, p.id)}>

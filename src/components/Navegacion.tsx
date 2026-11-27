@@ -13,6 +13,7 @@ import {
   Menu,
   Package,
   Radar,
+  Receipt,
   Truck,
   Users,
   Wallet,
@@ -27,12 +28,15 @@ const ICONOS = {
   referencias: Columns3,
   tareas: ListChecks,
   pagos: Wallet,
+  finanzas: Receipt,
   notificaciones: Bell,
   clientes: Building2,
   proveedores: Truck,
   productos: Package,
   usuarios: Users,
 } satisfies Record<string, LucideIcon>;
+
+const CORTO: Record<string, string> = { "/": "Torre", "/tareas": "Tareas", "/notificaciones": "Avisos" };
 
 export type ItemNav = { href: string; label: string; icono: keyof typeof ICONOS; contador?: number; grupo?: string };
 
@@ -123,7 +127,7 @@ export function Navegacion({
           return (
             <Link key={i.href} href={i.href} className={`relative flex flex-col items-center gap-0.5 py-2 text-[10px] ${on ? "text-marca" : "text-tenue"}`}>
               <Icono className="h-5 w-5" strokeWidth={1.6} />
-              {i.label.split(" ")[0]}
+              {CORTO[i.href] ?? i.label}
               {!!i.contador && <span className="absolute top-1 right-[30%] h-2 w-2 rounded-full bg-marca" />}
             </Link>
           );

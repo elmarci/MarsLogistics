@@ -1,7 +1,20 @@
 # MarsLogistics
 
-Sistema de Control Logístico Integral: órdenes de importación, tránsito internacional, aduanas,
-puerto y vacíos, almacén, transporte a destino, costos y portal de clientes.
+Sistema de Control Logístico Integral. Cada servicio contratado por un cliente es un **expediente**
+(EXP260001); de él cuelgan sus **referencias**, una por servicio, cada una con su flujo de etapas:
+
+| Prefijo | Referencia | Sigue |
+|---|---|---|
+| SEA / AIR | Carga marítima / aérea | Booking, embarque, tránsito, arribo, liberación del BL |
+| ADU | Aduana | Documentos, DAM, pago, canal, revisión, levante, retiro, liquidación |
+| TRA | Transporte | Cualquier movimiento terrestre: solicitud, programación, ruta, entrega, conformidad |
+| ALM | Almacenaje | Ingreso del lote, retiros parciales, agotado, liquidación |
+
+Los códigos son prefijo + año + correlativo (SEA260001, ADU260001…). Cada referencia tiene responsable,
+documentos con validación, tareas, bitácora con @menciones, solicitudes de pago (las aprueba Finanzas),
+costeo proyectado contra real y alertas. Finanzas registra comprobantes emitidos y recibidos (facturas,
+boletas, notas de crédito y débito, recibos por honorarios, DAM) con IGV, ISC, detracción, retención y
+percepción, cobros y pagos, y el registro de compras y ventas exportable.
 
 - **App:** Next.js 15 (React, TypeScript, Tailwind), instalable en el celular (PWA). Se despliega en Railway.
 - **Datos:** Supabase: PostgreSQL, login, permisos por fila (RLS) y archivos.
@@ -10,8 +23,9 @@ puerto y vacíos, almacén, transporte a destino, costos y portal de clientes.
 
 | Carpeta | Contenido |
 |---|---|
-| `supabase/migrations/` | Esquema, seguridad (RLS, auditoría) y bucket de documentos |
-| `supabase/seed.sql` | Proveedores, producto y conceptos de costo iniciales |
+| `supabase/migrations/` | Esquema, seguridad (RLS, auditoría, avisos, automatizaciones), documentos y contabilidad |
+| `supabase/seed.sql` | Etapas por tipo, documentos requeridos, proveedores, conceptos, series y detracciones |
+| `supabase/instalacion_completa.sql` | Todo lo anterior en un solo archivo (lo genera `scripts/armar-instalacion.sh`) |
 | `supabase/tests/` | Pruebas de permisos que corren sobre PostgreSQL puro |
 | `src/app/(interno)/` | Pantallas del equipo de operaciones |
 | `src/app/portal/` | Portal de clientes (solo lectura, solo su información) |
@@ -22,9 +36,9 @@ puerto y vacíos, almacén, transporte a destino, costos y portal de clientes.
 |---|---|
 | admin | Todo, incluida la gestión de usuarios |
 | operaciones, aduanas, almacen, transporte | Leer y registrar la operación; operaciones y aduanas ven costos |
-| finanzas | Leer, registrar, ver costos y mantener tarifas |
+| finanzas | Leer, registrar, ver costos, mantener tarifas, **aprobar pagos**, emitir comprobantes y registrar cobros y pagos |
 | consulta | Solo leer (sin costos) |
-| cliente | Portal: solo las órdenes, contenedores, stock, despachos y documentos marcados como visibles de su empresa |
+| cliente | Portal: solo sus expedientes, las referencias visibles, contenedores, stock y documentos validados y marcados como visibles |
 
 Los permisos los aplica la base de datos (RLS), no solo la app. Ver `supabase/migrations/20261127000002_seguridad.sql`.
 
@@ -32,8 +46,9 @@ Los permisos los aplica la base de datos (RLS), no solo la app. Ver `supabase/mi
 
 ### 1. Supabase
 1. Crear un proyecto en Supabase (región São Paulo, la más cercana a Lima).
-2. En **SQL Editor**, ejecutar en orden los archivos de `supabase/migrations/` y luego `supabase/seed.sql`.
-   (O con la CLI: `supabase link` y `supabase db push`.)
+2. En **SQL Editor**, pegar y ejecutar `supabase/instalacion_completa.sql`.
+   **Ojo:** ese archivo borra y vuelve a crear todo el esquema `public` (sirve también para reinstalar;
+   los usuarios de Authentication y los archivos se conservan, pero los datos de la app se pierden).
 3. **Authentication → Sign In / Providers:** desactivar *Allow new users to sign up*. Solo se entra por invitación.
 4. **Authentication → URL Configuration:** *Site URL* = la URL pública de Railway.
 5. **Authentication → Email Templates**, cambiar el enlace de estas plantillas:

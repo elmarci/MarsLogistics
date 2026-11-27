@@ -14,7 +14,7 @@ export default async function LayoutInterno({ children }: { children: React.Reac
       .select("id", { count: "exact", head: true })
       .eq("asignado_a", perfil.id)
       .in("estado", ["pendiente", "en_proceso"]),
-    ["admin", "finanzas"].includes(perfil.rol)
+    perfil.rol === "finanzas"
       ? supabase.from("solicitud_pago").select("id", { count: "exact", head: true }).eq("estado", "solicitada")
       : Promise.resolve({ count: 0 }),
   ]);
@@ -26,6 +26,9 @@ export default async function LayoutInterno({ children }: { children: React.Reac
     { href: "/tareas", label: "Mis tareas", icono: "tareas", contador: tareas ?? 0, grupo: "Operación" },
     { href: "/pagos", label: "Pagos", icono: "pagos", contador: pagos ?? 0, grupo: "Operación" },
     { href: "/notificaciones", label: "Avisos", icono: "notificaciones", contador: noLeidas ?? 0, grupo: "Operación" },
+    ...(["admin", "finanzas", "operaciones", "aduanas"].includes(perfil.rol)
+      ? [{ href: "/finanzas", label: "Finanzas", icono: "finanzas", grupo: "Administración" } as ItemNav]
+      : []),
     { href: "/clientes", label: "Clientes", icono: "clientes", grupo: "Maestros" },
     { href: "/proveedores", label: "Proveedores", icono: "proveedores", grupo: "Maestros" },
     { href: "/productos", label: "Productos", icono: "productos", grupo: "Maestros" },

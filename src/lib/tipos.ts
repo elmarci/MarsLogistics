@@ -118,3 +118,26 @@ export const ETIQUETA_ROL: Record<Rol, string> = {
   consulta: "Solo consulta",
   cliente: "Cliente (portal)",
 };
+
+export const TIPOS_COMPROBANTE = {
+  FACTURA: "Factura",
+  BOLETA: "Boleta",
+  NOTA_CREDITO: "Nota de crédito",
+  NOTA_DEBITO: "Nota de débito",
+  RECIBO_HONORARIOS: "Recibo por honorarios",
+  LIQUIDACION_COMPRA: "Liquidación de compra",
+  DAM: "DAM (tributos de importación)",
+  TICKET: "Ticket",
+  OTRO: "Otro",
+} as const;
+export type TipoComprobante = keyof typeof TIPOS_COMPROBANTE;
+
+export const ESTADOS_COMPROBANTE = {
+  borrador: "Borrador",
+  emitido: "Emitido",
+  aceptado_sunat: "Aceptado SUNAT",
+  rechazado_sunat: "Rechazado SUNAT",
+  registrado: "Registrado",
+  anulado: "Anulado",
+} as const;
+export type EstadoComprobante = keyof typeof ESTADOS_COMPROBANTE;
