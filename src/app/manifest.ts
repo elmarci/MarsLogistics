@@ -8,8 +8,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: "Sistema de control logístico integral",
     start_url: "/",
     display: "standalone",
-    background_color: "#090c10",
-    theme_color: "#090c10",
+    background_color: "#f5f6f7",
+    theme_color: "#f5f6f7",
     lang: "es",
     icons: [
       { src: "/icon-192.png", sizes: "192x192", type: "image/png" },

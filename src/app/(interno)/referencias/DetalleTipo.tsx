@@ -270,13 +270,13 @@ export function Stock({
           ["En stock", s.stock_actual],
         ].map(([t, v], i) => (
           <div key={t as string} className="rounded-md border border-borde p-3">
-            <p className="text-[11px] tracking-wider text-tenue uppercase">{t}</p>
+            <p className="text-xs font-medium text-tenue">{t}</p>
             <p className={`codigo text-2xl font-semibold ${i === 2 ? "text-marca" : ""}`}>{v}</p>
           </div>
         ))}
       </div>
       <div className="h-2 overflow-hidden rounded bg-slate-200">
-        <div className="h-full bg-marca shadow-[0_0_12px_#22d3ee]" style={{ width: `${pct}%` }} />
+        <div className="h-full bg-marca" style={{ width: `${pct}%` }} />
       </div>
 
       {escribe && s.stock_actual > 0 && (

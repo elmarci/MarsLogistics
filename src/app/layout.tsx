@@ -4,11 +4,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: { default: "MarsLogistics", template: "%s · MarsLogistics" },
   description: "Torre de control logística: expedientes, referencias, documentos y alertas",
-  appleWebApp: { capable: true, title: "MarsLogistics", statusBarStyle: "black-translucent" },
+  appleWebApp: { capable: true, title: "MarsLogistics", statusBarStyle: "default" },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#090c10",
+  themeColor: "#ffffff",
   width: "device-width",
   initialScale: 1,
 };

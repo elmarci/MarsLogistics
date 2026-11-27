@@ -36,7 +36,7 @@ export function LineaEtapas({
               enCurso
                 ? demora
                   ? "border-aviso/60 bg-aviso/5"
-                  : "border-marca/60 bg-marca-claro shadow-[0_0_24px_-10px_#22d3ee]"
+                  : "border-marca/60 bg-marca-claro"
                 : hecho
                   ? "border-borde bg-panel"
                   : "border-dashed border-borde bg-transparent"
@@ -44,7 +44,7 @@ export function LineaEtapas({
           >
             <span
               className={`codigo flex h-6 w-6 shrink-0 items-center justify-center rounded-full border text-[11px] ${
-                hecho ? "border-marca bg-marca text-fondo" : enCurso ? "border-marca text-marca" : "border-borde-fuerte text-slate-400"
+                hecho ? "border-marca bg-marca text-white" : enCurso ? "border-marca text-marca" : "border-borde-fuerte text-slate-400"
               }`}
             >
               {hecho ? <Check className="h-3.5 w-3.5" strokeWidth={3} /> : e.orden}

@@ -67,11 +67,11 @@ export function Navegacion({
           on ? "bg-marca-claro text-marca" : "text-slate-600 hover:bg-panel-2 hover:text-texto"
         }`}
       >
-        {on && <span className="absolute top-1.5 bottom-1.5 left-0 w-0.5 rounded bg-marca shadow-[0_0_8px_#22d3ee]" />}
+        {on && <span className="absolute top-1.5 bottom-1.5 left-0 w-0.5 rounded bg-marca" />}
         <Icono className="h-4 w-4 shrink-0" strokeWidth={1.6} />
         <span className="flex-1">{i.label}</span>
         {!!i.contador && (
-          <span className="codigo rounded bg-marca px-1.5 text-[10px] font-bold text-fondo">{i.contador}</span>
+          <span className="codigo rounded bg-marca px-1.5 text-[10px] font-bold text-white">{i.contador}</span>
         )}
       </Link>
     );
@@ -82,7 +82,7 @@ export function Navegacion({
     <nav className="flex flex-col gap-4">
       {grupos.map((g) => (
         <div key={g} className="flex flex-col gap-0.5">
-          {g && <p className="mb-1 px-3 text-[10px] font-semibold tracking-[0.2em] text-slate-400 uppercase">{g}</p>}
+          {g && <p className="mb-1 px-3 text-xs font-semibold text-slate-500">{g}</p>}
           {items.filter((i) => (i.grupo ?? "") === g).map(enlace)}
         </div>
       ))}
@@ -108,19 +108,19 @@ export function Navegacion({
   return (
     <>
       {/* Celular: barra superior + barra inferior de accesos rápidos */}
-      <header className="sticky top-0 z-30 flex items-center justify-between border-b border-borde bg-fondo/90 px-4 py-3 backdrop-blur md:hidden">
+      <header className="sticky top-0 z-30 flex items-center justify-between border-b border-borde bg-white/95 px-4 py-3 backdrop-blur md:hidden">
         <Logo />
         <button aria-label="Menú" onClick={() => setAbierto(!abierto)} className="rounded-md border border-borde-fuerte p-2">
           {abierto ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
         </button>
       </header>
       {abierto && (
-        <div className="fixed inset-x-0 top-[57px] bottom-0 z-30 space-y-4 overflow-y-auto bg-fondo/95 p-4 backdrop-blur md:hidden">
+        <div className="fixed inset-x-0 top-[57px] bottom-0 z-30 space-y-4 overflow-y-auto bg-white/95 p-4 backdrop-blur md:hidden">
           {enlaces}
           {pie}
         </div>
       )}
-      <nav className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-5 border-t border-borde bg-fondo/95 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden">
+      <nav className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-5 border-t border-borde bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden">
         {barraMovil.map((i) => {
           const Icono = ICONOS[i.icono];
           const on = activo(i.href);
@@ -135,7 +135,7 @@ export function Navegacion({
       </nav>
 
       {/* Escritorio: barra lateral */}
-      <aside className="sticky top-0 hidden h-screen w-60 shrink-0 flex-col justify-between border-r border-borde bg-panel/80 p-4 backdrop-blur md:flex">
+      <aside className="sticky top-0 hidden h-screen w-60 shrink-0 flex-col justify-between border-r border-borde bg-white p-4 backdrop-blur md:flex">
         <div className="space-y-6 overflow-y-auto">
           <div className="px-1 pt-1">
             <Logo />

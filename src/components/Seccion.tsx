@@ -30,7 +30,7 @@ export function Seccion({
 // Índice de secciones de una ficha larga: en celular se desliza horizontal.
 export function Indice({ items }: { items: [string, string][] }) {
   return (
-    <nav className="sticky top-[57px] z-10 -mx-4 mb-4 flex gap-1 overflow-x-auto border-b border-borde bg-fondo/90 px-4 py-2 backdrop-blur md:top-0 md:mx-0 md:rounded-lg md:border md:px-2">
+    <nav className="sticky top-[57px] z-10 -mx-4 mb-4 flex gap-1 overflow-x-auto border-b border-borde bg-white/95 px-4 py-2 backdrop-blur md:top-0 md:mx-0 md:rounded-lg md:border md:px-2">
       {items.map(([id, t]) => (
         <a key={id} href={`#${id}`} className="rounded px-2.5 py-1 text-xs whitespace-nowrap text-tenue hover:bg-panel-2 hover:text-marca">
           {t}

@@ -18,7 +18,7 @@ export function Encabezado({
   return (
     <div className="mb-6 flex flex-wrap items-end justify-between gap-3 border-b border-borde pb-4">
       <div className="min-w-0">
-        {etiqueta && <p className="mb-1 text-[11px] font-semibold tracking-[0.2em] text-marca uppercase">{etiqueta}</p>}
+        {etiqueta && <p className="mb-1 text-xs font-semibold text-marca">{etiqueta}</p>}
         <h1 className="text-2xl font-semibold tracking-tight">{titulo}</h1>
         {detalle && <div className="mt-1 text-sm text-tenue">{detalle}</div>}
       </div>
@@ -175,7 +175,7 @@ export function Tabla<T>({
     <>
       <div className="hidden overflow-x-auto rounded-lg border border-borde bg-panel md:block">
         <table className="w-full text-left text-sm">
-          <thead className="border-b border-borde text-[11px] tracking-wider text-tenue uppercase">
+          <thead className="border-b border-borde bg-slate-50 text-xs font-medium text-tenue">
             <tr>
               {columnas.map((c) => (
                 <th key={c.titulo} className="px-4 py-2.5 font-medium">
@@ -254,7 +254,7 @@ export function Insignia({ tono = "neutro", children }: { tono?: Tono; children:
 export function Dato({ titulo, valor, mono }: { titulo: string; valor: React.ReactNode; mono?: boolean }) {
   return (
     <div className="min-w-0">
-      <dt className="text-[11px] tracking-wider text-tenue uppercase">{titulo}</dt>
+      <dt className="text-xs font-medium text-tenue">{titulo}</dt>
       <dd className={`truncate text-sm ${mono ? "codigo" : ""}`}>{valor ?? "—"}</dd>
     </div>
   );
@@ -278,11 +278,11 @@ export function Kpi({
   const color = tono === "alerta" ? "text-alerta" : tono === "acento" ? "text-marca" : "text-texto";
   const contenido = (
     <>
-      <div className="flex items-center justify-between text-[11px] tracking-wider text-tenue uppercase">
+      <div className="flex items-center justify-between text-xs font-medium text-tenue">
         {titulo}
         {Icono && <Icono className="h-4 w-4" strokeWidth={1.5} />}
       </div>
-      <p className={`codigo mt-2 text-3xl font-semibold ${color}`}>{valor}</p>
+      <p className={`mt-2 text-3xl font-semibold tabular-nums ${color}`}>{valor}</p>
       {detalle && <p className="mt-1 text-xs text-tenue">{detalle}</p>}
     </>
   );

@@ -47,7 +47,7 @@ export function ResumenCosteo({ r }: { r: Resumen | null }) {
   return (
     <div className="overflow-x-auto">
       <table className="w-full min-w-96 text-sm">
-        <thead className="text-[11px] tracking-wider text-tenue uppercase">
+        <thead className="text-xs font-medium text-tenue">
           <tr>
             <th className="pb-2 text-left font-medium">USD sin IGV</th>
             <th className="pb-2 text-right font-medium">Proyectado</th>

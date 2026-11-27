@@ -65,7 +65,7 @@ export default async function RegistroPage({ searchParams }: { searchParams: Pro
       ) : (
         <div className="overflow-x-auto rounded-lg border border-borde bg-panel">
           <table className="w-full min-w-[60rem] text-xs">
-            <thead className="text-[10px] tracking-wider text-tenue uppercase">
+            <thead className="text-xs font-medium text-tenue">
               <tr className="border-b border-borde">
                 {["Fecha", "Tipo", "Serie-número", "RUC", "Razón social", "Base S/", "No grav. S/", "ISC S/", "IGV S/", "Total S/", "Detracción", "Exp."].map((h) => (
                   <th key={h} className="px-2 py-2 text-left font-medium">

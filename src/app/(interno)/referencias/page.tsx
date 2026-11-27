@@ -69,7 +69,7 @@ export default async function ReferenciasPage({ searchParams }: { searchParams: 
         {columnas.map((e) => {
           const enEtapa = refs.filter((r) => r.etapa_id === e.id);
           return (
-            <section key={e.id} className="w-64 shrink-0 snap-start rounded-lg border border-borde bg-panel/60">
+            <section key={e.id} className="w-64 shrink-0 snap-start rounded-lg border border-borde bg-slate-50">
               <header className="flex items-center justify-between border-b border-borde px-3 py-2">
                 <p className="text-xs font-medium">
                   <span className="codigo mr-1.5 text-tenue">{String(e.orden).padStart(2, "0")}</span>
@@ -85,7 +85,7 @@ export default async function ReferenciasPage({ searchParams }: { searchParams: 
                     <li key={r.id}>
                       <Link
                         href={`/referencias/${r.id}`}
-                        className={`block rounded-md border bg-panel-2 p-2.5 transition hover:border-marca ${tarde ? "border-aviso/60" : "border-borde"}`}
+                        className={`block rounded-md border bg-white p-2.5 shadow-sm transition hover:border-marca ${tarde ? "border-aviso/60" : "border-borde"}`}
                       >
                         <div className="flex items-center justify-between">
                           <span className="codigo text-sm font-medium">{r.codigo}</span>

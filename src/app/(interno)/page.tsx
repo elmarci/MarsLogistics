@@ -154,7 +154,7 @@ function ListaAlertas({ alertas }: { alertas: Alerta[] }) {
         <li key={i}>
           <Link
             href={a.enlace}
-            className={`flex items-start gap-2 rounded-md border-l-2 bg-panel-2 px-3 py-2 text-xs hover:bg-slate-100 ${
+            className={`flex items-start gap-2 rounded-md border-l-2 bg-panel-2 px-3 py-2 text-xs hover:bg-marca-claro ${
               a.severidad === "alta" ? "border-alerta" : "border-aviso"
             }`}
           >

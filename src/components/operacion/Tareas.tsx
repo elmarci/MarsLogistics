@@ -30,7 +30,7 @@ export function ListaTareas({ tareas, puedeEscribir, contexto }: { tareas: Tarea
                 <Check className="h-3 w-3 opacity-0 hover:opacity-100" />
               </BotonAccion>
             ) : (
-              <span className={`mt-0.5 flex h-5 w-5 items-center justify-center rounded border ${abierta ? "border-borde-fuerte" : "border-marca bg-marca text-fondo"}`}>
+              <span className={`mt-0.5 flex h-5 w-5 items-center justify-center rounded border ${abierta ? "border-borde-fuerte" : "border-marca bg-marca text-white"}`}>
                 {!abierta && <Check className="h-3 w-3" strokeWidth={3} />}
               </span>
             )}

@@ -11,7 +11,7 @@ export default async function LayoutPortal({ children }: { children: React.React
 
   return (
     <div className="min-h-screen">
-      <header className="sticky top-0 z-20 border-b border-borde bg-fondo/90 backdrop-blur">
+      <header className="sticky top-0 z-20 border-b border-borde bg-white/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-4 py-3">
           <a href="/portal" className="flex items-center gap-3">
             <Logo />

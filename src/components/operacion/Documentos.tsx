@@ -92,7 +92,7 @@ export function PanelDocumentos({
                   </BotonAccion>
                   <details className="relative">
                     <summary className="boton-mini cursor-pointer list-none">Revisar</summary>
-                    <div className="absolute right-0 z-20 mt-1 w-72 rounded-lg border border-borde-fuerte bg-panel-2 p-3 shadow-2xl">
+                    <div className="absolute right-0 z-20 mt-1 w-72 rounded-lg border border-borde-fuerte bg-white p-3 shadow-xl">
                       <Formulario accion={revisarDocumento.bind(null, d.id)} textoBoton="Guardar revisión" boton="boton-mini">
                         <select name="estado" defaultValue="validado" className="campo">
                           <option value="validado">Validar</option>

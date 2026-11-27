@@ -101,7 +101,7 @@ export default async function ComprobantePage({ params }: { params: Promise<{ id
             ) : (
               <div className="overflow-x-auto rounded-lg border border-borde">
                 <table className="w-full min-w-[40rem] text-sm">
-                  <thead className="text-[11px] tracking-wider text-tenue uppercase">
+                  <thead className="text-xs font-medium text-tenue">
                     <tr>
                       <th className="px-3 py-2 text-left font-medium">Descripción</th>
                       <th className="px-3 py-2 text-right font-medium">Cant. × valor</th>
