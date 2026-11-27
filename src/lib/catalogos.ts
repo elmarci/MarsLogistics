@@ -1,0 +1,27 @@
+import { crearClienteServidor } from "@/lib/supabase/server";
+
+// Listas para los selectores de los formularios.
+export async function catalogos() {
+  const supabase = await crearClienteServidor();
+  const [clientes, sedes, productos, proveedores] = await Promise.all([
+    supabase.from("cliente").select("id, razon_social").eq("activo", true).order("razon_social"),
+    supabase.from("sede_cliente").select("id, nombre, cliente_id").eq("activo", true).order("nombre"),
+    supabase.from("producto").select("id, descripcion").eq("activo", true).order("descripcion"),
+    supabase.from("proveedor").select("id, razon_social, nombre_corto, tipo").eq("activo", true).order("razon_social"),
+  ]);
+  const provs = proveedores.data ?? [];
+  const deTipo = (tipo: string) =>
+    provs.filter((p) => p.tipo === tipo).map((p) => ({ value: p.id, label: p.nombre_corto ?? p.razon_social }));
+  const nombreCliente = new Map((clientes.data ?? []).map((c) => [c.id, c.razon_social]));
+
+  return {
+    clientes: (clientes.data ?? []).map((c) => ({ value: c.id, label: c.razon_social })),
+    sedes: (sedes.data ?? []).map((s) => ({ value: s.id, label: `${s.nombre} (${nombreCliente.get(s.cliente_id) ?? "—"})` })),
+    productos: (productos.data ?? []).map((p) => ({ value: p.id, label: p.descripcion })),
+    navieras: deTipo("naviera"),
+    terminales: deTipo("terminal"),
+    agentes: deTipo("agente_aduanas"),
+    transportesLocales: deTipo("transporte_local"),
+    depositosVacios: deTipo("deposito_vacios"),
+  };
+}
