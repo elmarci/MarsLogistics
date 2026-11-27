@@ -3,12 +3,12 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: { default: "MarsLogistics", template: "%s · MarsLogistics" },
-  description: "Sistema de control logístico integral",
-  appleWebApp: { capable: true, title: "MarsLogistics", statusBarStyle: "default" },
+  description: "Torre de control logística: expedientes, referencias, documentos y alertas",
+  appleWebApp: { capable: true, title: "MarsLogistics", statusBarStyle: "black-translucent" },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0f4c81",
+  themeColor: "#090c10",
   width: "device-width",
   initialScale: 1,
 };

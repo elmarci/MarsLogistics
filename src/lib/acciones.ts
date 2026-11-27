@@ -42,3 +42,7 @@ export const entero = z.preprocess(vacioANull, z.coerce.number().int("debe ser e
 export const id = z.preprocess(vacioANull, z.coerce.number().int().positive().nullable());
 export const idRequerido = z.coerce.number({ invalid_type_error: "es obligatorio" }).int().positive("es obligatorio");
 export const casilla = z.preprocess((v) => v === true, z.boolean());
+export const uuid = z.preprocess(vacioANull, z.string().uuid().nullable());
+
+// Los campos datetime-local llegan sin zona: se interpretan en hora de Lima.
+export const conZonaLima = (v: string | null | undefined) => (v && v.length === 16 ? `${v}:00-05:00` : (v ?? null));

@@ -17,33 +17,65 @@ export type Perfil = {
   activo: boolean;
 };
 
-export const ESTADOS_ORDEN = [
-  "abierta",
-  "en_transito",
-  "en_aduana",
-  "en_puerto",
-  "en_almacen",
-  "en_despacho",
-  "liquidacion",
-  "cerrada",
-  "anulada",
-] as const;
-export type EstadoOrden = (typeof ESTADOS_ORDEN)[number];
+export const TIPOS_REFERENCIA = ["CARGA_MARITIMA", "CARGA_AEREA", "ADUANA", "TRANSPORTE", "ALMACENAJE"] as const;
+export type TipoReferencia = (typeof TIPOS_REFERENCIA)[number];
 
-export const ETIQUETA_ESTADO: Record<EstadoOrden, string> = {
-  abierta: "Abierta",
-  en_transito: "En tránsito",
-  en_aduana: "En aduana",
-  en_puerto: "En puerto",
-  en_almacen: "En almacén",
-  en_despacho: "En despacho",
-  liquidacion: "Liquidación",
-  cerrada: "Cerrada",
-  anulada: "Anulada",
+export const INFO_TIPO: Record<TipoReferencia, { prefijo: string; nombre: string; corto: string }> = {
+  CARGA_MARITIMA: { prefijo: "SEA", nombre: "Carga marítima", corto: "Carga" },
+  CARGA_AEREA: { prefijo: "AIR", nombre: "Carga aérea", corto: "Aérea" },
+  ADUANA: { prefijo: "ADU", nombre: "Aduana", corto: "Aduana" },
+  TRANSPORTE: { prefijo: "TRA", nombre: "Transporte", corto: "Transporte" },
+  ALMACENAJE: { prefijo: "ALM", nombre: "Almacenaje", corto: "Almacén" },
 };
+
+export type EstadoExpediente = "abierto" | "en_curso" | "cerrado" | "anulado";
+export const ETIQUETA_ESTADO_EXPEDIENTE: Record<EstadoExpediente, string> = {
+  abierto: "Abierto",
+  en_curso: "En curso",
+  cerrado: "Cerrado",
+  anulado: "Anulado",
+};
+
+export type EstadoReferencia = "activa" | "cerrada" | "anulada";
+
+export type Etapa = {
+  id: number;
+  tipo: TipoReferencia;
+  orden: number;
+  codigo: string;
+  nombre: string;
+  horas_estandar: number | null;
+  es_final: boolean;
+};
+
+export type EstadoDocumento = "pendiente" | "validado" | "observado" | "rechazado";
+export const ETIQUETA_ESTADO_DOCUMENTO: Record<EstadoDocumento, string> = {
+  pendiente: "Por validar",
+  validado: "Validado",
+  observado: "Observado",
+  rechazado: "Rechazado",
+};
+
+export type EstadoPago = "solicitada" | "aprobada" | "rechazada" | "pagada";
+export const ETIQUETA_ESTADO_PAGO: Record<EstadoPago, string> = {
+  solicitada: "Por aprobar",
+  aprobada: "Aprobada",
+  rechazada: "Rechazada",
+  pagada: "Pagada",
+};
+
+export const TIPOS_SERVICIO_TRANSPORTE = {
+  RETIRO_PUERTO: "Retiro de puerto",
+  TRASLADO_ALMACEN: "Traslado a almacén",
+  DISTRIBUCION: "Distribución a destino",
+  DEVOLUCION_VACIO: "Devolución de vacío",
+  OTRO: "Otro",
+} as const;
 
 export const TIPOS_PROVEEDOR = [
   "naviera",
+  "aerolinea",
+  "agente_carga",
   "agente_aduanas",
   "almacen",
   "terminal",
@@ -55,6 +87,8 @@ export const TIPOS_PROVEEDOR = [
 
 export const ETIQUETA_TIPO_PROVEEDOR: Record<(typeof TIPOS_PROVEEDOR)[number], string> = {
   naviera: "Naviera",
+  aerolinea: "Aerolínea",
+  agente_carga: "Agente de carga",
   agente_aduanas: "Agente de aduanas",
   almacen: "Almacén",
   terminal: "Terminal portuario",
